@@ -110,6 +110,7 @@ if(isset($_REQUEST['save'])){
     echo "oops...something went wrong!".mysqli_error($con);
   }
 
+  //close connection
   mysqli_close($con);
 }
 

@@ -110,5 +110,8 @@ if(isset($_REQUEST['update'])){
     echo "oops...something went wrong!".mysqli_error($con);
   }
 
+  //close connection
+  mysqli_close($con);
+
 }
 ?>
