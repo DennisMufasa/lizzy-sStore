@@ -68,7 +68,7 @@ center{
 
                     <div class="form-group">
                             <label for="name">product name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter product name">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name">
                             
                           </div>
                           <button type="submit" name="update" class="btn btn-danger">Delete</button>
@@ -77,3 +77,36 @@ center{
     </center>
 </body>
 </html>
+
+<?php
+
+//database connection
+$serverName = '127.0.0.1';
+$username = 'root';
+$password = '';
+$database = 'lizzy';
+
+$con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
+
+/*
+Delete products from the inventory(database)
+capture user input when submit button is clicked and query the database
+*/
+
+if(isset($_REQUEST['update'])){
+  //capture user input
+  extract($_REQUEST);
+
+  //query db
+  $sql = "DELETE FROM `inventory` WHERE `productName`='$name';";
+
+  if(mysqli_query($con, $sql)){
+    echo "product, $name, was successfully deleted from inventory!";
+  }else{
+    echo "oops...something went wrong!".mysqli_error($con);
+  }
+
+  mysqli_close($con);
+
+}
+?>
