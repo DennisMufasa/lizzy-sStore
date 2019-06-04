@@ -63,18 +63,18 @@ center{
 
 
     <center class="border">
-            <form action="" method="">
+            <form action="update_category.php" method="POST">
                 <fieldset>
                     <legend class="text-primary border border-primary">update product category</legend><br><br>
 
                     <div class="form-group">
                             <label for="name">product name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter product name">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name">
                             
                           </div>
                           <div class="form-group">
                             <label for="category">new product category</label>
-                            <input type="number" class="form-control" id="category" placeholder="enter new category">
+                            <input type="text" name="category" class="form-control" id="category" placeholder="enter new category">
                           </div>
                           <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </fieldset>
@@ -82,3 +82,33 @@ center{
     </center>
 </body>
 </html>
+
+<?php
+
+//database connection
+$serverName = '127.0.0.1';
+$username = 'root';
+$password = '';
+$database = 'lizzy';
+
+$con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
+
+/*
+update product cost from the inventory(database)
+capture user input when submit button is clicked and query the database
+*/
+if(isset($_REQUEST['update'])){
+  //capture user input
+  extract($_REQUEST);
+
+  //query the db
+  $sql = "UPDATE `inventory` SET `category`='$category' WHERE `productName` = '$name'";
+
+  if(mysqli_query($con, $sql)){
+    echo "Category of $name has been updated to $category successfully!";
+  }else{
+    echo "oops...something went wrong!".mysqli_error($con);
+  }
+
+}
+?>
