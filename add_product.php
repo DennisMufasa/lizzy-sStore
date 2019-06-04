@@ -55,7 +55,7 @@
 
     <div class="container">
         <center style="margin-top: 12%; width: 80%; margin-left:10%;">
-            <form class="border" action="" method="POST">
+            <form class="border" action="add_product.php" method="POST">
                     <fieldset>
                         <legend class="text-primary border border-primary">add product</legend>
                         <br><br>
@@ -83,3 +83,34 @@
 
 </body>
 </html>
+
+<?php
+//database connection
+$serverName = '127.0.0.1';
+$username = 'root';
+$password = '';
+$database = 'lizzy';
+
+$con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
+
+/*
+Adding products into the inventory(database)
+capture user input when submit button is clicked and query the database
+*/
+if(isset($_REQUEST['save'])){
+  //capture user input
+  extract($_REQUEST);
+
+  //query db
+  $sql = "INSERT INTO `inventory`(`productName`, `category`, `unitCost`, `quantity`) VALUES ('$name', '$category', '$cost', '$quantity')";
+
+  if(mysqli_query($con, $sql)){
+    echo "New product, $name, was added successfully!";
+  }else{
+    echo "oops...something went wrong!".mysqli_error($con);
+  }
+
+  mysqli_close($con);
+}
+
+?>
