@@ -1,4 +1,7 @@
 
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,14 +60,14 @@
                     </li>
                     
                   </ul>
-                  <form class="form-inline my-2 my-lg-0" action="" method="GET">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  <form class="form-inline my-2 my-lg-0" action="sale.php" method="GET">
+                    <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" name="search" type="submit">Search</button>
                   </form>
                 </div>
               </nav>
 
-    <table border="3">
+    <!-- <table border="3">
         <tr>
             <th>product name</th>
             <th>product category</th>
@@ -84,6 +87,99 @@
                 </form>
             </td>
         </tr>
-    </table>
+    </table> -->
+
+
 </body>
 </html>
+
+<?php
+
+//database connection
+$serverName = '127.0.0.1';
+$username = 'root';
+$password = '';
+$database = 'lizzy';
+
+$con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
+
+//save resultset
+$result_set;
+/*
+searching for a product from the inventory(database)
+capture user input when submit button is clicked and query the database
+*/
+if(isset($_REQUEST['search'])){
+  //capture user input
+  extract($_REQUEST);
+  
+  //query db
+  $sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
+
+  //save result in a variable
+  $result = mysqli_query($con, $sql);
+
+  //check for empty result set
+  if(mysqli_num_rows($result) > 0){
+    //convert the mysqli result object to a php associative array
+    
+    $row = mysqli_fetch_assoc($result);
+    $_SESSION['data'] = $row;
+    
+    ?>
+
+    <table border='3'>
+        <tr>
+            <th>product name</th>
+            <th>product category</th>
+            <th>product cost</th>
+            <th>quantity</th>
+        </tr>
+        <tr><?php echo "
+            <td>". $row['productName'] ."</td>
+            <td>". $row['category'] ."</td>
+            <td>". $row['unitCost'] ."</td>
+            <td>";?>
+                <form action='sale.php' method='GET'>
+                    
+                    <center>
+                        <input type='number' name='qty' placeholder='enter quantity' required><br><br>
+                        <button type='submit' name='submit'>Buy</button></center>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    
+    <?php
+
+  }else{
+    echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>That product does not exist in your inventory!</center>";
+  }
+}
+
+
+//create sales
+if(isset($_REQUEST['submit'])){
+  //capture use input
+  extract($_REQUEST);
+
+  $product_dets = $_SESSION['data'];
+
+  $sql_name = $product_dets['productName'];
+  $sql_category = $product_dets['category'];
+  $sql_cost = $product_dets['unitCost'];
+  $income = $sql_cost * $qty;
+
+  //query db
+  $sql_sales = "INSERT INTO `sales`(`productName`, `category`, `unitCost`, `quantity`, `income`) VALUES ('$sql_name', '$sql_category', '$sql_cost', '$qty', '$income')";
+ 
+  //execute query
+  if(mysqli_query($con, $sql_sales)){
+    echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>New sale of a $sql_name was successfully posted!</center>";
+  }else{
+    echo "oops...something went wrong!".mysqli_error($con);
+  }
+
+}
+?>
