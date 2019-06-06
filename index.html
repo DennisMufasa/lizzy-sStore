@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>update cost</title>
+    <title>home</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -14,11 +13,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <style>
-center{
-    margin-top: 10%;
-    margin-left: 10%;
-    width: 80%;
-}
+    table{
+        margin-top: 10%;
+        width: 80%;
+        margin-left: 10%;
+    }
+    button{
+        background: rgb(121, 158, 228);
+    }
 </style>
 
 </head>
@@ -60,58 +62,6 @@ center{
                   </form>
                 </div>
               </nav>
+              </body>
+              </html>
 
-
-    <center class="border">
-            <form action="update_cost.php" method="POST">
-                <fieldset>
-                    <legend class="text-primary border border-primary">update product cost</legend><br><br>
-
-                    <div class="form-group">
-                            <label for="name">product name</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name">
-                            
-                          </div>
-                          <div class="form-group">
-                            <label for="cost">new product cost</label>
-                            <input type="number" name="cost" class="form-control" id="cost" placeholder="enter new product cost">
-                          </div>
-                          <button type="submit" name="update" class="btn btn-primary">Update</button>
-                </fieldset>
-            </form>
-    </center>
-</body>
-</html>
-
-<?php
-
-//database connection
-$serverName = '127.0.0.1';
-$username = 'root';
-$password = '';
-$database = 'lizzy';
-
-$con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
-
-/*
-update product cost from the inventory(database)
-capture user input when submit button is clicked and query the database
-*/
-if(isset($_REQUEST['update'])){
-  //capture user input
-  extract($_REQUEST);
-
-  //query the db
-  $sql = "UPDATE `inventory` SET `unitCost`='$cost' WHERE `productName` = '$name'";
-
-  if(mysqli_query($con, $sql)){
-    echo "Unit cost for $name has been updated to $cost successfully!";
-  }else{
-    echo "oops...something went wrong!".mysqli_error($con);
-  }
-
-  //close connection
-  mysqli_close($con);
-
-}
-?>
