@@ -62,7 +62,7 @@ session_start();
                     
                   </ul>
                   <form class="form-inline my-2 my-lg-0" action="sale.php" method="GET">
-                    <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search" required>
                     <button class="btn btn-outline-success my-2 my-sm-0" name="search" type="submit">Search</button>
                   </form>
                 </div>
@@ -176,8 +176,11 @@ if(isset($_REQUEST['submit'])){
   $sql_sales = "INSERT INTO `sales`(`productName`, `category`, `unitCost`, `quantity`, `income`) VALUES ('$sql_name', '$sql_category', '$sql_cost', '$qty', '$income')";
   $sql_update_inventory = "UPDATE `inventory` SET `quantity`='$update_inventory_qty' WHERE `productName`='$sql_name'";
   //execute query
-if ($update_inventory_qty <= 5){
-  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>That product has only 5 items left!</center>";
+if ($qty > $product_dets['quantity']){
+  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>Purchase Cancelled. The inventory doesn't have that many $sql_name(s)!</center>";
+  
+}else if($update_inventory_qty <= 5){
+  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>Purchase Cancelled. Selling $qty units of $sql_name (s) will leave inventory numbers for the product below threshold!</center>";
 }else{
   if(mysqli_query($con, $sql_sales)){
     mysqli_query($con, $sql_update_inventory);

@@ -56,7 +56,7 @@ center{
                     
                   </ul>
                   <form class="form-inline my-2 my-lg-0" action="sale.php" method="GET">
-                    <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search" required>
                     <button class="btn btn-outline-success my-2 my-sm-0" name="search" type="submit">Search</button>
                   </form>
                 </div>
@@ -68,7 +68,7 @@ center{
 
                     <div class="form-group">
                             <label for="name">product name</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name" required>
                             
                           </div>
                           <button type="submit" name="update" class="btn btn-danger">Delete</button>

@@ -56,7 +56,7 @@ center{
                     
                   </ul>
                   <form class="form-inline my-2 my-lg-0" action="sale.php" method="GET">
-                    <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search" required>
                     <button class="btn btn-outline-success my-2 my-sm-0" name="search" type="submit">Search</button>
                   </form>
                 </div>
@@ -66,15 +66,25 @@ center{
             <form action="update_category.php" method="POST">
                 <fieldset>
                     <legend class="text-primary border border-primary">update product category</legend><br><br>
-
+                    <br>
+                    
                     <div class="form-group">
                             <label for="name">product name</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name" required>
                             
                           </div>
                           <div class="form-group">
-                            <label for="category">new product category</label>
-                            <input type="text" name="category" class="form-control" id="category" placeholder="enter new category">
+                            <label for="category">new product category: <br>
+                              <select name="category" id="category">
+                                <option value="accessories">accessories</option>
+                                <option value="khakis">khakis</option>
+                                <option value="new_shirts">new shirts</option>
+                                <option value="suits">suits</option>
+
+                              </select>
+                            </label>
+                            <!-- <input type="text" name="category" class="form-control" id="category" placeholder="enter new category"> -->
+
                           </div>
                           <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </fieldset>
