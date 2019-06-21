@@ -114,7 +114,7 @@ if(isset($_REQUEST['search'])){
   extract($_REQUEST);
   
   //query db
-  $sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
+  $sql = "SELECT `productId`, `productName`, `category`, `retail_cost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
 
   //save result in a variable
   $result = mysqli_query($con, $sql);
@@ -132,13 +132,13 @@ if(isset($_REQUEST['search'])){
         <tr>
             <th>product name</th>
             <th>product category</th>
-            <th>product cost</th>
+            <th>selling price</th>
             <th>quantity</th>
         </tr>
         <tr><?php echo "
             <td>". $row['productName'] ."</td>
             <td>". $row['category'] ."</td>
-            <td>". $row['unitCost'] ."</td>
+            <td>". $row['retail_cost'] ."</td>
             <td>";?>
                 <form action='sale.php' method='GET'>
                     
