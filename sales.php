@@ -110,7 +110,7 @@ echo "<center>
   }
   echo "</table></center>";
 }else{
-  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>Inventory is empty!</center>";
+  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>No sales made just yet!</center>";
 }
 
 ?>
