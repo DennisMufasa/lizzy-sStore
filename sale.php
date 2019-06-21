@@ -186,11 +186,11 @@ if ($update_inventory_qty <= 5){
     echo "oops...something went wrong!".mysqli_error($con);
   }
 }
-
-}
-
 unset($_SESSION['data']);
 session_destroy();
+}
+
+
 
 
 ?>

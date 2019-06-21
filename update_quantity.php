@@ -125,8 +125,10 @@ if(isset($_REQUEST['update'])){
   //close connection
   mysqli_close($con);
 
+  unset($_SESSION['data']);
+  session_destroy();
+
 }
 
-unset($_SESSION['data']);
-session_destroy();
+
 ?>
