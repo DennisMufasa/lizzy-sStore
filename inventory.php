@@ -90,7 +90,7 @@ echo "<center>
         <th>product id</th>
         <th>product name</th>
         <th>category</th>
-        <th>unit cost</th>
+        <th>retail price</th>
         <th>quantity</th>
       </tr>";
   while($row = mysqli_fetch_assoc($result)){
@@ -98,7 +98,7 @@ echo "<center>
               <td>". $row['productId'] ."</td>
               <td>". $row['productName'] ."</td>
               <td>". $row['category'] ."</td>
-              <td>". $row['unitCost'] ."</td>
+              <td>". $row['retail_cost'] ."</td>
               <td>". $row['quantity'] ."</td></tr>";
   }
   echo "</table></center>";
