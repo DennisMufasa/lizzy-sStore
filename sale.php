@@ -188,4 +188,9 @@ if ($update_inventory_qty <= 5){
 }
 
 }
+
+unset($_SESSION['data']);
+session_destroy();
+
+
 ?>

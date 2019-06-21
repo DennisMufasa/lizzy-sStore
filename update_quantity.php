@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,8 +76,8 @@ center{
                             
                           </div>
                           <div class="form-group">
-                            <label for="cost">new product qauntity</label>
-                            <input type="number" name="update_quantity" class="form-control" id="cost" placeholder="enter new product cost">
+                            <label class="text-info" for="cost">how many products do you want to add?</label>
+                            <input type="number" name="update_quantity" class="form-control" id="cost" placeholder="products to add">
                           </div>
                           <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </fieldset>
@@ -102,11 +104,20 @@ if(isset($_REQUEST['update'])){
   //capture user input
   extract($_REQUEST);
 
+  $fetch_product_sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
+  $product = mysqli_query($con, $fetch_product_sql);
+
+  if(mysqli_num_rows($product) > 0){
+    $row = mysqli_fetch_assoc($product);
+    $_SESSION['data'] = $row;
+  }
+
+  $new_product_qty = ($_SESSION['data']['quantity'] += $update_quantity);
   //query the db
-  $sql = "UPDATE `inventory` SET `quantity`='$update_quantity' WHERE `productName` = '$name'";
+  $sql = "UPDATE `inventory` SET `quantity`='$new_product_qty' WHERE `productName` = '$name'";
 
   if(mysqli_query($con, $sql)){
-    echo "Product quantity for $name has been updated to $update_quantity successfully!";
+    echo "Product quantity for $name has been updated by $update_quantity successfully!";
   }else{
     echo "oops...something went wrong!".mysqli_error($con);
   }
@@ -115,4 +126,7 @@ if(isset($_REQUEST['update'])){
   mysqli_close($con);
 
 }
+
+unset($_SESSION['data']);
+session_destroy();
 ?>
