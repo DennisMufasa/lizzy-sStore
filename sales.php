@@ -77,7 +77,7 @@ $database = 'lizzy';
 $con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
 
 //fetch products from inventory
-$sql = "SELECT * FROM `sales`";
+$sql = "SELECT * FROM `sales` ORDER BY `saleId` DESC";
 
 //save results in a php object
 $result = mysqli_query($con, $sql);
