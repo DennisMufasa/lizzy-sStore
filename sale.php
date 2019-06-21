@@ -176,8 +176,8 @@ if(isset($_REQUEST['submit'])){
   $sql_sales = "INSERT INTO `sales`(`productName`, `category`, `unitCost`, `quantity`, `income`) VALUES ('$sql_name', '$sql_category', '$sql_cost', '$qty', '$income')";
   $sql_update_inventory = "UPDATE `inventory` SET `quantity`='$update_inventory_qty' WHERE `productName`='$sql_name'";
   //execute query
-if ($product_dets['quantity'] < 5){
-  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>That product does not exist in your inventory!</center>";
+if ($update_inventory_qty <= 5){
+  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>That product has only 5 items left!</center>";
 }else{
   if(mysqli_query($con, $sql_sales)){
     mysqli_query($con, $sql_update_inventory);
