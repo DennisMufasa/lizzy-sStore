@@ -85,6 +85,9 @@ $result = mysqli_query($con, $sql);
 //check for empty results
 if(mysqli_num_rows($result) > 0){
 echo "<center>
+<p class='text-info' style='margin-top: 10px; font-size: 3Vmax;'>Sales <br> <small style='font-size: 20px;' class='text-info'>sorted by most recent from top</small></p>
+
+
     <table border='3'>
       <tr class='bg-info'>
         <th>sale id</th>
