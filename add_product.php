@@ -40,6 +40,7 @@
                         <a class="dropdown-item" href="add_product.php">add product</a>
                         <a class="dropdown-item" href="delete.php">delete product</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="update_quantity.php">update product quantity</a>
                         <a class="dropdown-item" href="update_cost.php">update product cost</a>
                         <a class="dropdown-item" href="update_category.php">update product category</a>
                       </div>
@@ -51,8 +52,7 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" name="search" type="submit">Search</button>
                   </form>
                 </div>
-              </nav>    
-
+              </nav>
     <div class="container">
         <center style="margin-top: 12%; width: 80%; margin-left:10%;">
             <form class="border" action="add_product.php" method="POST">

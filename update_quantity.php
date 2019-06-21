@@ -62,10 +62,11 @@ center{
                 </div>
               </nav>
 
+
     <center class="border">
-            <form action="update_cost.php" method="POST">
+            <form action="update_quantity.php" method="POST">
                 <fieldset>
-                    <legend class="text-primary border border-primary">update product cost</legend><br><br>
+                    <legend class="text-primary border border-primary">update product quantity</legend><br><br>
 
                     <div class="form-group">
                             <label for="name">product name</label>
@@ -73,8 +74,8 @@ center{
                             
                           </div>
                           <div class="form-group">
-                            <label for="cost">new product cost</label>
-                            <input type="number" name="cost" class="form-control" id="cost" placeholder="enter new product cost">
+                            <label for="cost">new product qauntity</label>
+                            <input type="number" name="update_quantity" class="form-control" id="cost" placeholder="enter new product cost">
                           </div>
                           <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </fieldset>
@@ -102,10 +103,10 @@ if(isset($_REQUEST['update'])){
   extract($_REQUEST);
 
   //query the db
-  $sql = "UPDATE `inventory` SET `unitCost`='$cost' WHERE `productName` = '$name'";
+  $sql = "UPDATE `inventory` SET `quantity`='$update_quantity' WHERE `productName` = '$name'";
 
   if(mysqli_query($con, $sql)){
-    echo "Unit cost for $name has been updated to $cost successfully!";
+    echo "Product quantity for $name has been updated to $update_quantity successfully!";
   }else{
     echo "oops...something went wrong!".mysqli_error($con);
   }

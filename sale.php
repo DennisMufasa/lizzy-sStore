@@ -38,7 +38,7 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="inventory.php">Inventory</a>
@@ -54,6 +54,7 @@ session_start();
                         <a class="dropdown-item" href="add_product.php">add product</a>
                         <a class="dropdown-item" href="delete.php">delete product</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="update_quantity.php">update product quantity</a>
                         <a class="dropdown-item" href="update_cost.php">update product cost</a>
                         <a class="dropdown-item" href="update_category.php">update product category</a>
                       </div>
@@ -66,7 +67,6 @@ session_start();
                   </form>
                 </div>
               </nav>
-
     <!-- <table border="3">
         <tr>
             <th>product name</th>

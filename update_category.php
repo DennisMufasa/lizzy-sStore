@@ -48,6 +48,7 @@ center{
                         <a class="dropdown-item" href="add_product.php">add product</a>
                         <a class="dropdown-item" href="delete.php">delete product</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="update_quantity.php">update product quantity</a>
                         <a class="dropdown-item" href="update_cost.php">update product cost</a>
                         <a class="dropdown-item" href="update_category.php">update product category</a>
                       </div>
@@ -60,7 +61,6 @@ center{
                   </form>
                 </div>
               </nav>
-
 
     <center class="border">
             <form action="update_category.php" method="POST">
