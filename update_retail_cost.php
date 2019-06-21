@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>inventory</title>
+    <title>update reatil cost</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -13,15 +13,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <style>
-    table{
-        
-        width: 80%;
-        margin: auto;
-        font-size: 30px;
-    }
-    button{
-        background: rgb(121, 158, 228);
-    }
+center{
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 80%;
+}
 </style>
 
 </head>
@@ -55,7 +51,6 @@
                         <a class="dropdown-item" href="update_cost.php">update product cost</a>
                         <a class="dropdown-item" href="update_category.php">update product category</a>
                         <a class="dropdown-item" href="update_retail_cost.php">update retail cost</a>
-
                       </div>
                     </li>
                     
@@ -65,7 +60,31 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" name="search" type="submit">Search</button>
                   </form>
                 </div>
-              </nav>              
+              </nav>
+
+
+    <center class="border">
+            <form action="update_retail_cost.php" method="POST">
+                <fieldset>
+                    <legend class="text-primary border border-primary">update product retail price</legend>
+                    <small class='text-info' style='font-size: 15px;'>the amount you buy the product at</small>
+                    <br><br>
+
+                    <div class="form-group">
+                            <label for="name">product name</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name" required>
+                            
+                          </div>
+                          <div class="form-group">
+                            <label class="text-info" for="cost">new retail price</label>
+                            <input type="number" name="update_price" class="form-control" id="cost" placeholder="new retail price" required>
+                          </div>
+                          <button type="submit" name="update" class="btn btn-primary">Update</button>
+                </fieldset>
+            </form>
+    </center>
+</body>
+</html>
 
 <?php
 
@@ -77,38 +96,29 @@ $database = 'lizzy';
 
 $con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
 
-//fetch products from inventory
-$sql = "SELECT * FROM `inventory`";
+/*
+update product cost from the inventory(database)
+capture user input when submit button is clicked and query the database
+*/
+if(isset($_REQUEST['update'])){
+  //capture user input
+  extract($_REQUEST);
 
-//save results in a php object
-$result = mysqli_query($con, $sql);
+  
+  //query the db
+  $sql = "UPDATE `inventory` SET `retail_cost`='$update_price' WHERE `productName`='$name'";
 
-//check for empty results
-if(mysqli_num_rows($result) > 0){
-echo "<center>
-<p class='text-info' style='margin-top: 10px; font-size: 3Vmax;'>Inventory</p>
-    <table border='3'>
-      <tr class='bg-info'>
-        <th>product id</th>
-        <th>product name</th>
-        <th>category</th>
-        <th>retail price</th>
-        <th>quantity</th>
-      </tr>";
-  while($row = mysqli_fetch_assoc($result)){
-        echo "<tr>
-              <td>". $row['productId'] ."</td>
-              <td>". $row['productName'] ."</td>
-              <td>". $row['category'] ."</td>
-              <td>". $row['retail_cost'] ."</td>
-              <td>". $row['quantity'] ."</td></tr>";
+  if(mysqli_query($con, $sql)){
+    echo "Product retail price for $name has been updated to $update_price successfully!";
+  }else{
+    echo "oops...something went wrong!".mysqli_error($con);
   }
-  echo "</table></center>";
-}else{
-  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>Inventory is empty!</center>";
+
+  //close connection
+  mysqli_close($con);
+
+
 }
 
-?>
 
-</body>
-</html>
+?>

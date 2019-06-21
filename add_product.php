@@ -43,6 +43,8 @@
                         <a class="dropdown-item" href="update_quantity.php">update product quantity</a>
                         <a class="dropdown-item" href="update_cost.php">update product cost</a>
                         <a class="dropdown-item" href="update_category.php">update product category</a>
+                        <a class="dropdown-item" href="update_retail_cost.php">update retail cost</a>
+
                       </div>
                     </li>
                     
