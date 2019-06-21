@@ -64,7 +64,7 @@
                                 <input name="name" type="text" class="form-control" id="name" placeholder="Enter product name" required>
                               </div>
                                 <div class="form-group">
-                                <label for="category">product category: <br>
+                                <label for="category">product category: <br> <br>
                                   <select name="category" id="category">
                                     <option value="accessories">accessories</option>
                                     <option value="khakis">khakis</option>
@@ -77,9 +77,15 @@
                                     <label for="quantity">quantity</label>
                                     <input name="quantity" type="number" class="form-control" id="quantity" placeholder="product quantity" required>
                                 </div>
-                               <div class="form-group">
+
+                                <div class="form-group">
                                     <label for="cost">unit cost</label>
-                                    <input name="cost" type="number" class="form-control" id="category" placeholder="product unit cost" required>
+                                    <input name="cost" type="number" class="form-control" id="cost" placeholder="how much did you buy at" required>
+                                </div>
+
+                               <div class="form-group">
+                                    <label for="retail">retail price</label>
+                                    <input name="retail" type="number" class="form-control" id="retail" placeholder="how much will you sell for" required>
                                 </div>
                               <button name="save" type="submit" class="btn btn-primary">Save</button>
                     </fieldset>
@@ -108,7 +114,8 @@ if(isset($_REQUEST['save'])){
   extract($_REQUEST);
 
   //query db
-  $sql = "INSERT INTO `inventory`(`productName`, `category`, `unitCost`, `quantity`) VALUES ('$name', '$category', '$cost', '$quantity')";
+  $sql = "INSERT INTO `inventory`(`productName`, `category`, `unitCost`, `retail_cost`, `quantity`) 
+                          VALUES ('$name','$category','$cost','$retail','$quantity')";
 
   if(mysqli_query($con, $sql)){
     echo "New product, $name, was added successfully!";
