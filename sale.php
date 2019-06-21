@@ -103,8 +103,7 @@ $database = 'lizzy';
 
 $con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
 
-//save resultset
-$result_set;
+
 /*
 searching for a product from the inventory(database)
 capture user input when submit button is clicked and query the database
@@ -114,7 +113,7 @@ if(isset($_REQUEST['search'])){
   extract($_REQUEST);
   
   //query db
-  $sql = "SELECT `productId`, `productName`, `category`, `retail_cost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
+  $sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `retail_cost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
 
   //save result in a variable
   $result = mysqli_query($con, $sql);
@@ -133,7 +132,7 @@ if(isset($_REQUEST['search'])){
             <th>product name</th>
             <th>product category</th>
             <th>selling price</th>
-            <th>quantity</th>
+            <th>purchase details</th>
         </tr>
         <tr><?php echo "
             <td>". $row['productName'] ."</td>
@@ -144,6 +143,7 @@ if(isset($_REQUEST['search'])){
                     
                     <center>
                         <input type='number' name='qty' placeholder='enter quantity' required><br><br>
+                        <input type='number' name='income' placeholder='transaction income' required><br> <small style='font-size: 15px;  ' class='text-info'>* how much money did you make?</small> <br><br>
                         <button type='submit' name='submit'>Buy</button></center>
                 </form>
             </td>
@@ -169,11 +169,13 @@ if(isset($_REQUEST['submit'])){
   $sql_name = $product_dets['productName'];
   $sql_category = $product_dets['category'];
   $sql_cost = $product_dets['unitCost'];
-  $income = $sql_cost * $qty;
+  $expected_sale = $sql_cost * $qty;
+  $profit = $income - $expected_sale;
   $update_inventory_qty = ($product_dets['quantity'] - $qty);
+  
 
   //query db
-  $sql_sales = "INSERT INTO `sales`(`productName`, `category`, `unitCost`, `quantity`, `income`) VALUES ('$sql_name', '$sql_category', '$sql_cost', '$qty', '$income')";
+  $sql_sales = "INSERT INTO `sales`(`productName`, `category`, `unitCost`, `quantity`, `profit`, `income`) VALUES ('$sql_name', '$sql_category', '$sql_cost', '$qty','$profit', '$income')";
   $sql_update_inventory = "UPDATE `inventory` SET `quantity`='$update_inventory_qty' WHERE `productName`='$sql_name'";
   //execute query
 if ($qty > $product_dets['quantity']){
