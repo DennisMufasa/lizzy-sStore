@@ -67,7 +67,9 @@ center{
     <center class="border">
             <form action="update_cost.php" method="POST">
                 <fieldset>
-                    <legend class="text-primary border border-primary">update product cost</legend><br><br>
+                    <legend class="text-primary border border-primary">update product cost</legend>
+                    <small class='text-info' style='font-size: 15px;'>the amount you plan to sell the product at</small>
+                    <br><br>
 
                     <div class="form-group">
                             <label for="name">product name</label>
