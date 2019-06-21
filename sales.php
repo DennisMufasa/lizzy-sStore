@@ -96,6 +96,7 @@ echo "<center>
         <th>unit cost</th>
         <th>quantity</th>
         <th>income</th>
+        <th>profit</th>
         <th>time</th>
       </tr>";
   while($row = mysqli_fetch_assoc($result)){
@@ -106,6 +107,7 @@ echo "<center>
               <td>". $row['unitCost'] ."</td>
               <td>". $row['quantity'] ."</td>
               <td>". $row['income'] ."</td>
+              <td>". $row['profit'] ."</td>
               <td>". $row['timestamp'] ."</td></tr>";
   }
   echo "</table></center>";
