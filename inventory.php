@@ -84,6 +84,7 @@ $result = mysqli_query($con, $sql);
 //check for empty results
 if(mysqli_num_rows($result) > 0){
 echo "<center>
+<p class='text-info' style='margin-top: 10px; font-size: 3Vmax;'>Inventory</p>
     <table border='3'>
       <tr class='bg-info'>
         <th>product id</th>
