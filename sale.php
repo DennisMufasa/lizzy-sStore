@@ -28,7 +28,7 @@ session_start();
 </style>
 
 </head>
-<body>
+<body style="background: rgb(235, 229, 211);">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="index.php"><span style="color: orange;">Lizzy's Store</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -156,7 +156,7 @@ if(isset($_REQUEST['search'])){
     <?php
 
   }else{
-    echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>That product does not exist in your inventory!</center>";
+    echo "<center class='text-danger' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>That product does not exist in your inventory!</center>";
   }
 }
 
@@ -183,8 +183,6 @@ if(isset($_REQUEST['submit'])){
 if ($qty > $product_dets['quantity']){
   echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>Purchase Cancelled. The inventory doesn't have that many $sql_name(s)!</center>";
   
-}else if($update_inventory_qty <= 5){
-  echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>Purchase Cancelled. Selling $qty units of $sql_name (s) will leave inventory numbers for the product below threshold!</center>";
 }else{
   if(mysqli_query($con, $sql_sales)){
     mysqli_query($con, $sql_update_inventory);

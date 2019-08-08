@@ -24,7 +24,7 @@ center{
 </style>
 
 </head>
-<body>
+<body style="background: rgb(235, 229, 211);">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="index.php"><span style="color: orange;">Lizzy's Store</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,9 +119,13 @@ if(isset($_REQUEST['update'])){
   $sql = "UPDATE `inventory` SET `quantity`='$new_product_qty' WHERE `productName` = '$name'";
 
   if(mysqli_query($con, $sql)){
-    echo "Product quantity for $name has been updated by $update_quantity successfully!";
+    echo "<script>
+    alert('Product quantity for $name has been updated by $update_quantity successfully!');
+  </script>";
   }else{
-    echo "oops...something went wrong!".mysqli_error($con);
+    echo "<script>
+    alert('oops...something went wrong!".mysqli_error($con)."');
+  </script>";
   }
 
   //close connection

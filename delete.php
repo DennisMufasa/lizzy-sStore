@@ -22,7 +22,7 @@ center{
 </style>
 
 </head>
-<body>
+<body style="background: rgb(235, 229, 211);">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="index.php"><span style="color: orange;">Lizzy's Store</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@ center{
                   </form>
                 </div>
               </nav>
-    <center class="border">
+    <center class="border" >
             <form>
                 <fieldset>
                     <legend class="text-danger border border-danger">delete a product</legend><br><br>
@@ -103,9 +103,15 @@ if(isset($_REQUEST['update'])){
   $sql = "DELETE FROM `inventory` WHERE `productName`='$name';";
 
   if(mysqli_query($con, $sql)){
-    echo "product, $name, was successfully deleted from inventory!";
+    echo "<script>
+    
+    alert('product, $name, was successfully deleted from inventory!');
+    
+    </script>";
   }else{
-    echo "oops...something went wrong!".mysqli_error($con);
+    echo "<script>
+    alert('oop...something went wrong!".mysqli_error($con)."');
+    </script>";
   }
 
   //close connection
@@ -113,3 +119,4 @@ if(isset($_REQUEST['update'])){
 
 }
 ?>
+

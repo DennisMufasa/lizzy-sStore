@@ -21,7 +21,7 @@ center{
 </style>
 
 </head>
-<body>
+<body style="background: rgb(235, 229, 211);">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="index.php"><span style="color: orange;">Lizzy's Store</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@ center{
             <form action="update_retail_cost.php" method="POST">
                 <fieldset>
                     <legend class="text-primary border border-primary">update product retail price</legend>
-                    <small class='text-info' style='font-size: 15px;'>the amount you buy the product at</small>
+                    <small class='text-info' style='font-size: 15px;'>the price you plan to sell the product at</small>
                     <br><br>
 
                     <div class="form-group">
@@ -109,9 +109,13 @@ if(isset($_REQUEST['update'])){
   $sql = "UPDATE `inventory` SET `retail_cost`='$update_price' WHERE `productName`='$name'";
 
   if(mysqli_query($con, $sql)){
-    echo "Product retail price for $name has been updated to $update_price successfully!";
+    echo "<script>
+    alert('Product retail price for $name has been updated to $update_price successfully!');
+  </script>";
   }else{
-    echo "oops...something went wrong!".mysqli_error($con);
+    echo "<script>
+    alert('oops...something went wrong!".mysqli_error($con)."');
+  </script>";
   }
 
   //close connection

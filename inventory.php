@@ -17,15 +17,19 @@
         
         width: 80%;
         margin: auto;
-        font-size: 30px;
+        font-size: 25px;
     }
     button{
         background: rgb(121, 158, 228);
     }
+    small{
+      font-size: 15px;
+      margin: 0, auto;
+    }
 </style>
 
 </head>
-<body>
+<body style="background: rgb(235, 229, 211);">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="index.php"><span style="color: orange;">Lizzy's Store</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +96,9 @@ echo "<center>
         <th>product id</th>
         <th>product name</th>
         <th>category</th>
-        <th>retail price</th>
+        <th>details</th>
+        <th>unit cost <br> <small>buying price</small></th>
+        <th>retail price <br> <small>selling price</small></th>
         <th>quantity</th>
       </tr>";
   while($row = mysqli_fetch_assoc($result)){
@@ -100,6 +106,8 @@ echo "<center>
               <td>". $row['productId'] ."</td>
               <td>". $row['productName'] ."</td>
               <td>". $row['category'] ."</td>
+              <td>". $row['details'] ."</td>
+              <td>". $row['unitCost'] ."</td>
               <td>". $row['retail_cost'] ."</td>
               <td>". $row['quantity'] ."</td></tr>";
   }

@@ -75,6 +75,15 @@
                                   </select>
                                 </label>
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label for="details">product description</label>
+                                    <textarea rows='4' col='50' name="details" class="form-control" id="details" required>
+                                    </textarea>
+                                </div>
+
+
                                 <div class="form-group">
                                     <label for="quantity">quantity</label>
                                     <input name="quantity" type="number" class="form-control" id="quantity" placeholder="product quantity" required>
@@ -116,13 +125,20 @@ if(isset($_REQUEST['save'])){
   extract($_REQUEST);
 
   //query db
-  $sql = "INSERT INTO `inventory`(`productName`, `category`, `unitCost`, `retail_cost`, `quantity`) 
-                          VALUES ('$name','$category','$cost','$retail','$quantity')";
+  $sql = "INSERT INTO `inventory`(`productName`, `category`, `details`, `unitCost`, `retail_cost`, `quantity`) 
+                          VALUES ('$name','$category', '$details', '$cost','$retail','$quantity')";
 
   if(mysqli_query($con, $sql)){
-    echo "New product, $name, was added successfully!";
+    echo "
+    <script>
+    alert('New product, $name, was added successfully!')
+    </script>";
   }else{
-    echo "oops...something went wrong!".mysqli_error($con);
+    echo "
+    <script>
+    alert('oops...something went wrong!".mysqli_error($con)."')
+    </script>
+    ";
   }
 
   //close connection

@@ -22,7 +22,7 @@ center{
 </style>
 
 </head>
-<body>
+<body style="background: rgb(235, 229, 211);">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="index.php"><span style="color: orange;">Lizzy's Store</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,7 @@ center{
             <form action="update_cost.php" method="POST">
                 <fieldset>
                     <legend class="text-primary border border-primary">update product cost</legend>
-                    <small class='text-info' style='font-size: 15px;'>the amount you plan to sell the product at</small>
+                    <small class='text-info' style='font-size: 15px;'>the price you bought the product at</small>
                     <br><br>
 
                     <div class="form-group">
@@ -106,12 +106,16 @@ if(isset($_REQUEST['update'])){
   extract($_REQUEST);
 
   //query the db
-  $sql = "UPDATE `inventory` SET `unitCost`='$cost' WHERE `productName` = '$name'";
+  $sql = "UPDATE `inventory` SET `unitCost`='$cost' WHERE `productName`= '$name'";
 
   if(mysqli_query($con, $sql)){
-    echo "Unit cost for $name has been updated to $cost successfully!";
+    echo "<script>
+    alert('Unit cost for $name has been updated to $cost successfully!');
+  </script>";
   }else{
-    echo "oops...something went wrong!".mysqli_error($con);
+    echo "<script>
+    alert('oops...something went wrong!".mysqli_error($con)."');
+  </script>";
   }
 
   //close connection
