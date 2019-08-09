@@ -17,7 +17,7 @@
         
         width: 80%;
         margin: auto;
-        font-size: 30px;
+        font-size: 25px;
     }
     button{
         background: rgb(121, 158, 228);
@@ -99,6 +99,7 @@ echo "<center>
         <th>quantity</th>
         <th>income</th>
         <th>profit</th>
+        <th>loss</th>
         <th>time</th>
       </tr>";
   while($row = mysqli_fetch_assoc($result)){
@@ -110,6 +111,7 @@ echo "<center>
               <td>". $row['quantity'] ."</td>
               <td>". $row['income'] ."</td>
               <td>". $row['profit'] ."</td>
+              <td>". $row['loss'] ."</td>
               <td>". $row['timestamp'] ."</td></tr>";
   }
   echo "</table></center>";

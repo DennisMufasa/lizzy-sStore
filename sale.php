@@ -172,12 +172,22 @@ if(isset($_REQUEST['submit'])){
   $sql_category = $product_dets['category'];
   $sql_cost = $product_dets['unitCost'];
   $expected_sale = $sql_cost * $qty;
+
+  // calculate profit and loss
+if($income > $expected_sale){
   $profit = $income - $expected_sale;
+  $loss = 0;
+}else{
+  $profit = 0;
+  $loss = $expected_sale - $income;
+}
+
+  
   $update_inventory_qty = ($product_dets['quantity'] - $qty);
   
 
   //query db
-  $sql_sales = "INSERT INTO `sales`(`productName`, `category`, `unitCost`, `quantity`, `profit`, `income`) VALUES ('$sql_name', '$sql_category', '$sql_cost', '$qty','$profit', '$income')";
+  $sql_sales = "INSERT INTO `sales`(`productName`, `category`, `unitCost`, `quantity`, `profit`, `loss`, `income`) VALUES ('$sql_name', '$sql_category', '$sql_cost', '$qty','$profit', '$loss', '$income')";
   $sql_update_inventory = "UPDATE `inventory` SET `quantity`='$update_inventory_qty' WHERE `productName`='$sql_name'";
   //execute query
 if ($qty > $product_dets['quantity']){
