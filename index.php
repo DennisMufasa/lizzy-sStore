@@ -132,7 +132,7 @@ section{
 
 <div class="col-3">
 <center>
-<h3 class="text-info">current total profit</h3>
+<h3 class="text-info">current total profit:</h3>
 
 <?php
 
@@ -191,7 +191,7 @@ if(mysqli_num_rows($result3) > 0){
 
 
 
-echo "<h3 class='text-info'>almost depleted</h3>";
+echo "<h3 class='text-info'>products running low:</h3>";
 
 // execute low product qauntity and save results in a variable
 $result2 = mysqli_query($con, $sql_low_quantity);
