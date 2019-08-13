@@ -51,13 +51,13 @@ session_start();
                         more
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="add_product.php">add product</a>
+                      <a class="dropdown-item" href="add_product.php">add product</a>
                         <a class="dropdown-item" href="delete.php">delete product</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="update_quantity.php">update product quantity</a>
-                        <a class="dropdown-item" href="update_cost.php">update product cost</a>
+                        <a class="dropdown-item" href="update_cost.php">update buying price</a>
                         <a class="dropdown-item" href="update_category.php">update product category</a>
-                        <a class="dropdown-item" href="update_retail_cost.php">update retail cost</a>
+                        <a class="dropdown-item" href="update_retail_cost.php">update selling price</a>
 
                       </div>
                     </li>
