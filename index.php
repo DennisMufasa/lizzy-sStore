@@ -30,10 +30,14 @@ section{
         background: rgb(121, 158, 228);
     }
 
+    iframe{
+      margin-top: 65px;
+    }
+
     #faba{
       position: absolute;
-      top: 600px;
-      left: 160px;
+      top: 1px;
+      left: 170px;
     }
 
     #faba:hover{
@@ -226,10 +230,6 @@ echo "</table>";
 ?>
 
 
-<a id="faba" href="https://www.facebook.com/Lizzys-Mens-Fashion-404725296774753/">
-<img src="images/faba.png" alt="faba">
-<br>
-<small class="text-info">facebook</small></a>
 </center>
 </div>
 
@@ -353,6 +353,12 @@ echo "</table>";
 <div class="col-3">
 
 <center>
+
+
+<a id="faba" href="https://www.facebook.com/Lizzys-Mens-Fashion-404725296774753/">
+<img src="images/faba.png" alt="faba">
+<br>
+<small class="text-info">facebook</small></a>
 
 <iframe src="https://www.nation.co.ke/" frameborder="0" style="height: 700px;"></iframe>
 
