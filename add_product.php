@@ -68,10 +68,30 @@
                                 <div class="form-group">
                                 <label for="category">product category: <br> <br>
                                   <select name="category" id="category">
-                                    <option value="accessories">accessories</option>
-                                    <option value="khakis">khakis</option>
-                                    <option value="new_shirts">new shirts</option>
-                                    <option value="suits">suits</option>
+                                    <option value="jackets">jackets</option>
+                                    <option value="hoddies">hoodies</option>
+                                    <option value="official shirts">official shirts</option>
+                                    <option value="casual shirts long sleeved">casual shirts long sleeved</option>
+                                    <option value="casual shirts short sleeved">casual shirts short sleeved</option>
+                                    <option value="collar short-sleeved tshirt">collar short-sleeved tshirt</option>
+                                    <option value="collar long-sleeved tshirt">collar long-sleeved tshirt</option>
+                                    <option value="no-collar tshirt">no-collar tshirt</option>
+                                    <option value="denim shirts">demin shirts</option>
+                                    <option value="official sleeveless sweater">official sleeveless swaeter</option>
+                                    <option value="official long-sleeved sweater">official long-sleeved sweater</option>
+                                    <option value="official trousers">official trousers</option>
+                                    <option value="khaki trousers">khaki trousers</option>
+                                    <option value="jean trousers">jean trousers</option>
+                                    <option value="track suits">track suits</option>
+                                    <option value="tie">tie</option>
+                                    <option value="socks">socks</option>
+                                    <option value="caps">caps</option>
+                                    <option value="vests">vests</option>
+                                    <option value="belts">belts</option>
+                                    <option value="boxers">boxers</option>
+                                    <option value="boots">boots</option>
+                                    <option value="official shoes">official shoes</option>
+                                    <option value="sports shoes">sports shoes</option>
                                   </select>
                                 </label>
                                 </div>
