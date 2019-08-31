@@ -37,10 +37,19 @@ section{
     #faba{
       position: absolute;
       top: 1px;
-      left: 170px;
+      left: 185px;
     }
 
     #faba:hover{
+      text-decoration: none;
+    }
+    #twit{
+      position: absolute;
+      top: 1px;
+      left: 100px;
+    }
+
+    #twit:hover{
       text-decoration: none;
     }
 
@@ -86,7 +95,7 @@ section{
   
   <!-- nav bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.php"><span style="color: orange;">Lizzy's Store</span></a>
+    <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="" width="60%"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -128,7 +137,7 @@ section{
 
 <!-- marquee -->
 <section>
-<h1 class="marquee text-primary"><span>Lizzy's Fashion Store</span></h1>
+<h1 class="marquee text-primary"><span>Store Manager</span></h1>
 </section>
 
 
@@ -241,98 +250,27 @@ echo "</table>";
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      <!-- <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="6"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="7"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="8"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="8"></li> -->
 
     </ol>
     <div class="carousel-inner">
 
       <div class="carousel-item active">
-        <img src="images/shati.jpg" class="d-block w-100" alt="official shirts">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Official Shirts</h5>
-          <p>small, large, X large, xx large and of varying colours.</p>
-        </div>
+        <img src="images/open.jpg" class="d-block w-100" alt="official shirts">
+        
       </div>
 
       <div class="carousel-item">
-        <img src="images/casual_shirts.jpg" class="d-block w-100" alt="casual shirts">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Casual shirts</h5>
-          <p>Affordable weekend and holiday wear for men..</p>
-        </div>
+        <img src="images/store.jpg" class="d-block w-100" alt="casual shirts">
+        
       </div>
 
-
-      <div class="carousel-item">
-        <img src="images/collar_tshirts.jpg" class="d-block w-100" alt="collar t-shirts">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Collar T-shirts</h5>
-          <p>Affordable collar T-shirts for golfing. Made by polo</p>
-        </div>
-      </div>
-
-
-
-      <div class="carousel-item">
-        <img src="images/trousers.jpg" class="d-block w-100" alt="official trousers">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Official Trousers</h5>
-          <p>Men's official trousers of all sizes and colours.</p>
-        </div>
-      </div>
-
-
-
-      <div class="carousel-item">
-        <img src="images/khakis.jpg" class="d-block w-100" alt="khaki pants">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Khaki trousers</h5>
-          <p>Men's Khaki trousers of all sizes, texture and colours.</p>
-        </div>
-      </div>      
-
-
-
-      <div class="carousel-item">
-        <img src="images/vneck.jpg" class="d-block w-100" alt="v neck">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>V-necked t-shirts</h5>
-          <p>Fashionable v-necked t-shirts that are trending.</p>
-        </div>
-      </div>
-
-
-      <div class="carousel-item">
-        <img src="images/tracksuit.jpg" class="d-block w-100" alt="track suit">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Track suits</h5>
-          <p>Sporting track suits of all sizes and colours.</p>
-        </div>
-      </div>
-
-
-      <div class="carousel-item">
-        <img src="images/sweatsuit.jpg" class="d-block w-100" alt="sweat suits">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Sweat suits</h5>
-          <p>Combined sweat shirt and sweat pants trending among the youth.</p>
-        </div>
-      </div>
-
-
-      <div class="carousel-item">
-        <img src="images/jacko.jpg" class="d-block w-100" alt="jackets">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>jackets</h5>
-          <p>Affordable and high quality jackets for all men.</p>
-        </div>
-      </div>
 
 
     </div>
@@ -354,14 +292,19 @@ echo "</table>";
 
 <center>
 
-
-<a id="faba" href="https://www.facebook.com/Lizzys-Mens-Fashion-404725296774753/">
+<div style="display: flex;">
+<a id="faba" href="https://www.facebook.com">
 <img src="images/faba.png" alt="faba">
 <br>
 <small class="text-info">facebook</small></a>
 
-<iframe src="https://www.nation.co.ke/" frameborder="0" style="height: 700px;"></iframe>
+<a id="twit" href="https://www.twitter.com">
+<img src="images/twit.png" alt="faba">
+<br>
+<small class="text-info">twitter</small></a>
 
+<iframe src="https://www.nation.co.ke/" frameborder="0" style="height: 700px;"></iframe>
+</div>
 </center>
 
 </div>
