@@ -2,8 +2,8 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 13, 2019 at 11:53 AM
+-- Host: localhost
+-- Generation Time: Sep 05, 2019 at 09:36 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -35,19 +35,20 @@ CREATE TABLE `inventory` (
   `details` longtext NOT NULL,
   `unitCost` int(11) NOT NULL,
   `retail_cost` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `total_stock_value` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inventory`
 --
 
-INSERT INTO `inventory` (`productId`, `productName`, `category`, `details`, `unitCost`, `retail_cost`, `quantity`) VALUES
-(2, 'khaki trouser', 'khakis', '                                    brown, 34 waits 42 hieght', 2000, 2500, 30),
-(3, 'official shirt', 'new_shirts', '                                    brand new ', 1200, 1500, 12),
-(4, 'watch', 'accessories', '                                    rolex', 2000, 2500, 3),
-(6, 'official shirt L', 'new_shirts', '                                    size large colours: red, blue, checked, stripped', 1200, 1300, 5),
-(7, 'official shirt XL', 'new_shirts', '                                  size Extra Large colours:  red, black, blue, green', 1000, 1300, 13);
+INSERT INTO `inventory` (`productId`, `productName`, `category`, `details`, `unitCost`, `retail_cost`, `quantity`, `total_stock_value`) VALUES
+(3, 'official shirt', 'new_shirts', '                                    brand new ', 1200, 1500, 12, 14400),
+(7, 'official shirt XL', 'new_shirts', '                                  size Extra Large colours:  red, black, blue, green', 1000, 1300, 13, 13000),
+(10, 'polo t-shirt', 'collar short-sleeved tshirt', 'polo t shirts at an affordable price', 1100, 1500, 12, 13200),
+(11, 'boots', 'accessories', 'tacky cowboy boots', 1000, 1500, 11, 12000),
+(18, 'watch', 'accessories', 'rolex watches at affordable prices', 1000, 1500, 9, 9000);
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,13 @@ INSERT INTO `sales` (`saleId`, `productName`, `category`, `unitCost`, `quantity`
 (4, 'watch', 'accessories', 2000, 1, 200, 0, 2200, '2019-08-08 10:23:27'),
 (5, 'official shirt XL', 'new_shirts', 1000, 2, 600, 0, 2600, '2019-08-08 10:47:24'),
 (6, 'watch', 'accessories', 2000, 3, 1000, 0, 7000, '2019-08-09 12:10:04'),
-(9, 'watch', 'accessories', 2000, 1, 0, 200, 1800, '2019-08-09 12:44:50');
+(9, 'watch', 'accessories', 2000, 1, 0, 200, 1800, '2019-08-09 12:44:50'),
+(10, 'watch', 'accessories', 2000, 1, 500, 0, 2500, '2019-09-05 19:52:05'),
+(11, 'polo t-shirt', 'collar short-sleeved tshirt', 1000, 1, 500, 0, 1500, '2019-09-05 21:08:59'),
+(12, 'boots', 'accessories', 1000, 2, 1000, 0, 3000, '2019-09-05 21:56:40'),
+(13, 'watch', 'accessories', 1000, 1, 500, 0, 1500, '2019-09-05 22:13:15'),
+(14, 'watch', 'accessories', 1000, 1, 500, 0, 1500, '2019-09-05 22:20:23'),
+(15, 'watch', 'accessories', 1000, 1, 500, 0, 1500, '2019-09-05 22:34:40');
 
 --
 -- Indexes for dumped tables
@@ -107,13 +114,13 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `saleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `saleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
