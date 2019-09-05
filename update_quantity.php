@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,28 +108,46 @@ if(isset($_REQUEST['update'])){
 
   if(mysqli_num_rows($product) > 0){
     $row = mysqli_fetch_assoc($product);
-    $_SESSION['data'] = $row;
-  }
+    // $_SESSION['data'] = $row;
 
-  $new_product_qty = ($_SESSION['data']['quantity'] += $update_quantity);
+    $new_product_qty = ($row['quantity'] += $update_quantity);
+
+    $new_stock_value = ($new_product_qty  * $row['unitCost']);
+
+
   //query the db
   $sql = "UPDATE `inventory` SET `quantity`='$new_product_qty' WHERE `productName` = '$name'";
 
+  $sql_update_stock_value = "UPDATE `inventory` SET `total_stock_value`='$new_stock_value' WHERE `productName` = '$name'";
+
+
   if(mysqli_query($con, $sql)){
+
+    mysqli_query($con, $sql_update_stock_value);
+
     echo "<script>
     alert('Product quantity for $name has been updated by $update_quantity successfully!');
   </script>";
   }else{
-    echo "<script>
-    alert('oops...something went wrong!".mysqli_error($con)."');
-  </script>";
+    echo "
+    <script>
+    alert('oops...something went wrong!')
+    </script>
+    ";
   }
+  
+  }else{
+    echo "
+    <script>
+    alert('That product is not saved in inventory!')
+    </script>
+    ";
+  }
+
+  
 
   //close connection
   mysqli_close($con);
-
-  unset($_SESSION['data']);
-  session_destroy();
 
 }
 

@@ -104,19 +104,36 @@ if(isset($_REQUEST['update'])){
   //capture user input
   extract($_REQUEST);
 
-  
+  $fetch_product_sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
+  $product = mysqli_query($con, $fetch_product_sql);
+
+  if(mysqli_num_rows($product) > 0){
+    // $row = mysqli_fetch_assoc($product);
+        
   //query the db
-  $sql = "UPDATE `inventory` SET `retail_cost`='$update_price' WHERE `productName`='$name'";
+  $sql = "UPDATE `inventory` SET `retail_cost`='$update_price' WHERE `productName` = '$name'";
 
   if(mysqli_query($con, $sql)){
     echo "<script>
-    alert('Product retail price for $name has been updated to $update_price successfully!');
+    alert('Product selling price for $name has been updated to Ksh $update_price successfully!');
   </script>";
   }else{
-    echo "<script>
-    alert('oops...something went wrong!".mysqli_error($con)."');
-  </script>";
+    echo "
+    <script>
+    alert('oops...something went wrong!')
+    </script>
+    ";
   }
+  
+  }else{
+    echo "
+    <script>
+    alert('That product is not saved in inventory!')
+    </script>
+    ";
+  }
+
+  
 
   //close connection
   mysqli_close($con);

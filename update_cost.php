@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,21 +104,47 @@ if(isset($_REQUEST['update'])){
   //capture user input
   extract($_REQUEST);
 
+  $fetch_product_sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
+  $product = mysqli_query($con, $fetch_product_sql);
+
+  if(mysqli_num_rows($product) > 0){
+    $row = mysqli_fetch_assoc($product);
+
+    $new_stock_value = ($cost * $row['quantity']);
+        
   //query the db
-  $sql = "UPDATE `inventory` SET `unitCost`='$cost' WHERE `productName`= '$name'";
+  $sql = "UPDATE `inventory` SET `unitCost`='$cost' WHERE `productName` = '$name'";
+
+  $sql_update_stock_value = "UPDATE `inventory` SET `total_stock_value`='$new_stock_value' WHERE `productName` = '$name'";
 
   if(mysqli_query($con, $sql)){
+
+    mysqli_query($con, $sql_update_stock_value);
+
     echo "<script>
-    alert('Unit cost for $name has been updated to $cost successfully!');
+    alert('Product buying price for $name has been updated to Ksh $cost successfully!');
   </script>";
   }else{
-    echo "<script>
-    alert('oops...something went wrong!".mysqli_error($con)."');
-  </script>";
+    echo "
+    <script>
+    alert('oops...something went wrong!')
+    </script>
+    ";
   }
+  
+  }else{
+    echo "
+    <script>
+    alert('That product is not saved in inventory!')
+    </script>
+    ";
+  }
+
+  
 
   //close connection
   mysqli_close($con);
+
 
 }
 ?>

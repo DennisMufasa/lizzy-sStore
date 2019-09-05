@@ -115,7 +115,7 @@ if(isset($_REQUEST['search'])){
   extract($_REQUEST);
   
   //query db
-  $sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `retail_cost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
+  $sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `retail_cost`, `quantity`, `total_stock_value` FROM `inventory` WHERE `productName`='$name'";
 
   //save result in a variable
   $result = mysqli_query($con, $sql);
@@ -172,6 +172,7 @@ if(isset($_REQUEST['submit'])){
   $sql_category = $product_dets['category'];
   $sql_cost = $product_dets['unitCost'];
   $expected_sale = $sql_cost * $qty;
+  $total_stock_value = $product_dets['total_stock_value'];
 
   // calculate profit and loss
 if($income > $expected_sale){
@@ -186,9 +187,14 @@ if($income > $expected_sale){
   $update_inventory_qty = ($product_dets['quantity'] - $qty);
   
 
+  $new_stock_value = ($update_inventory_qty * $sql_cost);
+
   //query db
   $sql_sales = "INSERT INTO `sales`(`productName`, `category`, `unitCost`, `quantity`, `profit`, `loss`, `income`) VALUES ('$sql_name', '$sql_category', '$sql_cost', '$qty','$profit', '$loss', '$income')";
   $sql_update_inventory = "UPDATE `inventory` SET `quantity`='$update_inventory_qty' WHERE `productName`='$sql_name'";
+
+  $sql_update_stock_value = "UPDATE `inventory` SET `total_stock_value`='$new_stock_value' WHERE `productName`='$sql_name'";
+
   //execute query
 if ($qty > $product_dets['quantity']){
   echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>Purchase Cancelled. The inventory doesn't have that many $sql_name(s)!</center>";
@@ -196,9 +202,14 @@ if ($qty > $product_dets['quantity']){
 }else{
   if(mysqli_query($con, $sql_sales)){
     mysqli_query($con, $sql_update_inventory);
+    mysqli_query($con, $sql_update_stock_value);
     echo "<center class='text-info' style='margin-top: 9%; margin-left: 25%; width: 50%; font-size: 3Vmax;'>New sale of a $sql_name was successfully posted!</center>";
   }else{
-    echo "oops...something went wrong!".mysqli_error($con);
+    echo "
+    <script>
+    alert('oops...something went wrong!')
+    </script>
+    ";
   }
 }
 unset($_SESSION['data']);

@@ -36,8 +36,8 @@ section{
 
     #faba{
       position: absolute;
-      top: 1px;
-      left: 185px;
+      top: 500px;
+      left: 225px;
     }
 
     #faba:hover{
@@ -45,8 +45,8 @@ section{
     }
     #twit{
       position: absolute;
-      top: 1px;
-      left: 100px;
+      top: 500px;
+      left: 140px;
     }
 
     #twit:hover{
@@ -146,7 +146,7 @@ section{
 <div class="col-3">
 <center>
 <h3 class="text-info">current total profit:</h3>
-
+<small style='font-size: 15px;' class='text-info'>(losses are accounted for)</small>
 <?php
 
 //database connection
@@ -174,10 +174,10 @@ if(mysqli_num_rows($result) > 0){
 
 }else{
   echo "
-  <script>
-  alert('opps something went wrong!".mysqli_error($con)."');
-  </script>
-  ";
+    <script>
+    alert('oops...something went wrong!')
+    </script>
+    ";
 }
 
 // query to get total loss
@@ -193,11 +193,12 @@ if(mysqli_num_rows($result3) > 0){
 
   echo "<p class='text-info' style='font-size: 1.5vmax;'><b><i>KSH ".$total_profit."</i></b></p>";
   
+  
 
 }else{
   echo "
   <script>
-  alert('opps something went wrong!".mysqli_error($con)."');
+  alert('oops...something went wrong!')
   </script>
   ";
 }
@@ -291,6 +292,54 @@ echo "</table>";
 <div class="col-3">
 
 <center>
+<h3 class='text-info'>Total Sales:</h3>
+<small class='text-info' style='font-size: 15px;'>(All the money made up to this point)</small><br><br>
+
+<?php
+
+$serverName = '127.0.0.1';
+$username = 'root';
+$password = '';
+$database = 'lizzy';
+
+$con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
+
+$sql_sales_value = "SELECT SUM(`income`) AS `sales_value` FROM `sales`";
+
+$sql_stock_value = "SELECT SUM(`total_stock_value`) AS `stock_value` FROM `inventory`";
+
+// execute the query
+$result_sales_value = mysqli_query($con, $sql_sales_value);
+
+$result_stock_value = mysqli_query($con, $sql_stock_value);
+
+// check for empty results
+if(mysqli_num_rows($result_sales_value) > 0){
+  $row_sales_value = mysqli_fetch_assoc($result_sales_value);
+
+  echo "<h3 class='text-info'><b>Ksh ". $row_sales_value['sales_value'] ."</b></h3>";
+}else{
+  echo "<h3 class='text-info'>Call Dennis to fix this issue! 0799382817</h3>";
+}
+
+echo "<br><br><br><br>";
+echo "<h3 class='text-info'>Total Stock Value:</h3>";
+echo "<small class='text-info' style='font-size: 15px;'>(what all your inventory is worth)</small><br><br>";
+
+if(mysqli_num_rows($result_stock_value) > 0){
+  $row_stock_value = mysqli_fetch_assoc($result_stock_value);
+
+  echo "<h3 class='text-info'><b>Ksh ". $row_stock_value['stock_value'] ."</b></h3>";
+}else{
+  echo "<h3 class='text-info'>Call Dennis to fix this issue! 0799382817</h3>";
+
+}
+
+
+
+?>
+
+
 
 <div style="display: flex;">
 <a id="faba" href="https://www.facebook.com">
@@ -303,7 +352,6 @@ echo "</table>";
 <br>
 <small class="text-info">twitter</small></a>
 
-<iframe src="https://www.nation.co.ke/" frameborder="0" style="height: 700px;"></iframe>
 </div>
 </center>
 

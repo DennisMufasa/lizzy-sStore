@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +66,7 @@ center{
                 </div>
               </nav>
     <center class="border" >
-            <form>
+            <form action='delete.php' method='GET'>
                 <fieldset>
                     <legend class="text-danger border border-danger">delete a product</legend><br><br>
 
@@ -91,32 +93,48 @@ $database = 'lizzy';
 $con = mysqli_connect($serverName, $username, $password, $database) or die(mysqli_connect_error());
 
 /*
-Delete products from the inventory(database)
+update product cost from the inventory(database)
 capture user input when submit button is clicked and query the database
 */
-
 if(isset($_REQUEST['update'])){
   //capture user input
   extract($_REQUEST);
 
-  //query db
-  $sql = "DELETE FROM `inventory` WHERE `productName`='$name';";
+  $fetch_product_sql = "SELECT `productId`, `productName`, `category`, `unitCost`, `quantity` FROM `inventory` WHERE `productName`='$name'";
+  $product = mysqli_query($con, $fetch_product_sql);
+
+  if(mysqli_num_rows($product) > 0){
+    
+  //query the db
+  $sql = "DELETE FROM `inventory` WHERE `productName`='$name'";
 
   if(mysqli_query($con, $sql)){
     echo "<script>
-    
-    alert('product, $name, was successfully deleted from inventory!');
-    
-    </script>";
+    alert('Product $name has been deleted successfully!');
+  </script>";
   }else{
-    echo "<script>
-    alert('oop...something went wrong!".mysqli_error($con)."');
-    </script>";
+    echo "
+    <script>
+    alert('oops...something went wrong!')
+    </script>
+    ";
   }
+  
+  }else{
+    echo "
+    <script>
+    alert('That product is not saved in inventory!')
+    </script>
+    ";
+  }
+}
+  
 
   //close connection
   mysqli_close($con);
 
-}
-?>
+  unset($_SESSION['data']);
+  session_destroy();
 
+
+?>

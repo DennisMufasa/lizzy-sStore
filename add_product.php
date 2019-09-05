@@ -144,9 +144,11 @@ if(isset($_REQUEST['save'])){
   //capture user input
   extract($_REQUEST);
 
+  $stock_value = $cost * $quantity;
+
   //query db
-  $sql = "INSERT INTO `inventory`(`productName`, `category`, `details`, `unitCost`, `retail_cost`, `quantity`) 
-                          VALUES ('$name','$category', '$details', '$cost','$retail','$quantity')";
+  $sql = "INSERT INTO `inventory`(`productName`, `category`, `details`, `unitCost`, `retail_cost`, `quantity`, `total_stock_value`) 
+                          VALUES ('$name','$category', '$details', '$cost','$retail','$quantity', '$stock_value')";
 
   if(mysqli_query($con, $sql)){
     echo "
@@ -156,7 +158,7 @@ if(isset($_REQUEST['save'])){
   }else{
     echo "
     <script>
-    alert('oops...something went wrong!".mysqli_error($con)."')
+    alert('oops...something went wrong!')
     </script>
     ";
   }
